@@ -1,0 +1,26 @@
+@media screen and (max-width: 480px) {
+    .logo{
+        align-content: center;
+    }
+    .form{
+        width: inherit;
+        align-content: center;
+    }
+}
+@media screen and (max-width: 830px){
+    .logo{
+        align-self: center;
+    }
+    .form{
+        width: auto;
+        align-content: center;
+    }
+}
+@media screen and (max-width: 1500px){
+    .logo{
+        float: left;
+    }
+    .form {
+        float: right;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Course registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style type="text/css">
+		body{
+			background-image: url(./index.jpg);
+		}
+		.container{
+			margin-right: 50px;
+			margin-left: 50px;
+			padding: 10px;
+			background-color: white;
+			height: 540px;
+		}
+		#heading{
+			text-align: center;
+		}
+		table{
+			width: 100%;
+		}
+		th,td{
+			text-align: center;
+			padding: 8px;
+		}
+		tr:nth-child(even){background-color: #f2f2f2}
+
+	</style>
+</head>
+<body>
+<div class="container">
+	<div id="heading">
+		<h3>Course Registration</h3>
+	</div>
+	<div>
+		<h4 style="background-color: lightblue">Course Listing for Raining Semester</h4>
+	</div>
+	<div style="overflow-x: auto;">
+		<table>
+			<tr>
+				<th>CODE</th>
+				<th>COURSE TITLE</th>
+				<th>UNITS</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>AGE201</td>
+				<td>Workshop Practice</td>
+				<td>2</td>
+				<td><input type="checkbox" name="checkbox"></td>
+			</tr>
+			<tr>
+				<td>AGE301</td>
+				<td>Statistics for Engineers</td>
+				<td>2</td>
+				<td><input type="checkbox" name="checkbox"></td>
+			</tr>
+			<tr>
+				<td>CHE305</td>
+				<td>Engineering Analysis I</td>
+				<td>3</td>
+				<td><input type="checkbox" name="checkbox"></td>
+			</tr>
+			<tr>
+				<td>CVE300</td>
+				<td>Basic Civil Engineering</td>
+				<td>2</td>
+				<td><input type="checkbox" name="checkbox"></td>
+			</tr>
+			<tr>
+				<td>MEE393</td>
+				<td>Fluid Mechanics Lab</td>
+				<td>1</td>
+				<td><input type="checkbox" name="checkbox"></td>
+			</tr>
+			<tr>
+				<td>MEE395</td>
+				<td>Mechanics of Machines Lab. I</td>
+				<td>1</td>
+				<td><input type="checkbox" name="checkbox"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<h4 style="background-color: lightblue">Electives</h4>
+		<select style="width: 100%">
+			<option>SEM001</option>
+			<option>SEH001</option>
+			<option>SEO003</option>
+			<option>SEA001</option>
+		</select>
+	</div><br><br>
+	<a href="profilepage.html"><input type="submit" name="Back" value="Back" style="float:left; margin-left: 50px; background-color: skyblue; position:relative;"></a>
+	<input type="submit" name="Save" value="Save" style="float:right;margin-right: 50px;background-color: skyblue;position: 
+	relative;">
+	
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+SWEP back end report for group 7.
+
+Programming Language : PHP.
+
+since the site adds an extra feature to e-portal system it will have some basic e-portal functionality which will be implemented with PHP
+1. student dashboard(login,register courses,)
+2. Admin dashboard(login,add student,add timetable, add courses)
+3. timetable generator.
+
+Challenges and Problems
+	1. Having to retype some functions over and over again while trying to query the database
+		like database connection variable.
+		To solve this problem we stored the frequently re-used functions in a file which is included at the beggining of each of our php files. 
+
+		Some of the above functions include 
+	    I.  function connect_db()// doesn't take any parameter since we're using just one db, but different tables to store data
+			{
+				
+				$connect = mysqli_connect('hostname','username','password', 'db name');
+				return $connect;
+			}
+			The above function connects to a specific database which is the database we're using. 
+
+		II.	function insert($array,$connect,$tablename) //takes 3 parameters, array containing values to ne inserted, connection variable
+			{											//and the table to which we're inserting data.			
+				$columns = implode(", ",array_keys($array)); //this turns the array index into a string seperated by comas ths
+																//ehich should match the column of our table in the db
+				$values  = implode("', '", $array); // this turns the array value into values to be inserted to database table.
+
+				$sql = "INSERT INTO `$tablename` VALUES ('$values'); ";
+				$query = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+
+				return $query;
+			} 
+			The above function is used to insert data into a database table specified as third parameter and values to be entered in an array
+
+		III. function select($connect,$tablename)
+			{
+				$sql = "SELECT * FROM `$tablename`";
+				$query = ($connect, $sql) or die(mysqli_error($connect));
+			}
+			The above function queries the database to select all the rows from a table in our database.
+			Some other conditions can be added to the $sql query like a WHERE , which selects data rows that contains a column matching our WHERE condition 
+			Example
+				adding $sql .= WHERE name = 'BLJ';
+				adds and addituonal where condition to the query.
+
+	2. Having to start session at the begining of everypage 
+		We solved this by storing the  function session_start(); with some if else statement to check if session has started or not
+		 in a file and then iclude it in all our pages			
+	
+	3. Displaying data from database to the UI.
+		We solved this issue by looping the returned rows (which is placed in mydqli_fetch_array()) from our database query through a loop.
+
+		//Code illustration
+		while ($row = mysqli_fetch_array($query))
+		{
+			$row['tablecolumn_name']; // this returns the data in that particular table column.
+		}
+
+
+How the functionalities work 
+	1. Login Functionality.
+		For a user of the site(student or admin) to access his page, her needs to sign in to the site by filling out a sign in form displayed on the site. We then write some php scripts to compare the form fields filled bythe user to their already stored data in our database, if the comparism is right then, they are given access to their page.
+
+	//php codes
+	if(isset($_POST['name of the login button'])) //code checks if the login submit  button has been clicked
+	{
+		$entered_username = $_POST['username']; //this stores the value inside the universal associative array into our custom array
+		$password = $_POST['password']; //this stores the value inside the universal associative array into our custom array
+
+		$connect = connect_db();
+		//connection to databse is set and stored in a variable
+		$sql = "SELECT * FROM `tablename` where username='$username' && password='$password'";
+		//sql query to select data from the table where the data in the column(username and password) matches our custome variable
+
+		$execute = mysqli_query($sql, #connect);
+		//executes the query.
+
+		$returned_rows = mysqli_num_rows($exeute); //this counts the numbor rows returned from the database from our sql query 
+
+		if($returned_rows> 0)
+		{
+			header('location:newpage.php');
+			//redirects to the page we want them to access after sign in
+		}
+		else
+		{
+			echo 'incorrect Uername or Password';
+		}
+	}
+
+	To make the admin login system secure as possible, the admin login system works differently than that. 
+	The admin first enters his email at his first login page and we instantly query the database and store some random number 
+	in his password column in admin table from the database. The same random number is sent to his email address(using the mail_to() function). So all he has to do is just check his mail for password. Basically the login system for admin works like an OTP.
+
+	2. Admin add student functionality
+		Just like the way e-portal admission works, if the student meets admission criteria, he's added to school e-portal with his registration number and date of birth as password.
+
+		To add a student, a logged in admin would fill the student profile form displayed on the site, admin dashboard.
+		The values in the form is then collected into the values of an array 
+		// code illustration
+		$array_of_form_values = array(
+		'column 1 name' => '$_POST['form field value']',
+		'column 2 name' => '$_POST['form field value']',
+		'column 2 name' => '$_POST['form field value']',
+
+		);
+
+		then the array is then passed as parameter to the database insert function created in the file included at beginning of the page.
+		//code
+		$connect = connect_db();
+		insert ($connect,$array_of_form_values, $tablename) or die(mysqli_error($connect)); // displays error message if query fails
+
+		if(insert)
+		{
+				echo "student added succesfully";
+		}
+		else
+		{	
+			//display error message
+		}
+
+	3. Admin add timetable and courses 
+		Most functionality just like the previous ones has to do with the database so we start by declaring our database connecting variable 
+
+		$connect connect_db(); 
+		//db connection varriable 
+
+		The way our the feature of our site works, admin needs to add timetable and courses based on the faculty he's registered with.
+		When he adds the timetable, the date,course info and venue is stored in the appropriate table in our database uding the insert function defined earlier and the form values passed into an array is used as the values for the appropriate column in the table.
+	
+	4. Student register courses 
+		A student in a faculty can view course for his faculty and register them. He can view them when we display the values of our SQL
+		query to select from database with a where condition that specifies courses for the students faculty.
+		Then when he clicks on submit, his regustered courses are entered into the database using the insert function defined above 
+		and they are stored in a table.
+
+	5. Student view timetable
+		The student can check his timetable column to see the the available timetable, wether school timetable, exam timetable or test timetable.
+		The timetable is displayed based on his registered courses as found in the database, we select the rows containing the registered courses with the appropriate WHERE condition in our query.
+
+		
+
