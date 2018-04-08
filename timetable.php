@@ -1,3 +1,10 @@
+<?php
+include 'functions/database.php';
+include 'functions/sessions.php';
+
+$connect = connect_db('swep_project');
+
+?>
 <html>
 <head>
     <style>
@@ -48,7 +55,7 @@
                 <li>CALENDAR</li>
             </ul>
             </div>
-            <a href="profilepage.html"><input type="submit" name="Close" value="Close" style="float:right;margin-right: 50px;background-color: skyblue;position: 
+            <a href="profilepage.php"><input type="submit" name="Close" value="Close" style="float:right;margin-right: 50px;background-color: skyblue;position: 
         relative;" id="close"></a>
         </div>
         

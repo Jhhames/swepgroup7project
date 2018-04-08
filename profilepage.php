@@ -1,3 +1,13 @@
+<?php
+include 'functions/database.php';
+include 'functions/sessions.php';
+
+$connect = connect_db('swep_project');
+
+if (isset($_SESSION['name']) && isset($_SESSION['matric_number'])) 
+{
+
+?>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -6,7 +16,12 @@
     <title>Obafemi Awolowo University - Undergraduate Profile</title>
 
     <style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
        .head{
+    }
     text-align:center;
     background: darkblue;
     color: yellow;
@@ -51,7 +66,7 @@
     float: left;
     margin-top: 10px;
     /* margin-left:0.5em; */
-    color: white;
+    color: darkblue;
     font-weight: bold;
     font-size: 25px;
     /* background-color: #000099; */
@@ -62,8 +77,9 @@
     /* padding-bottom: 20%; */
     }
     .sidebar:hover{
-    background-image: linear-gradient(to top, white  0%, #000099 100%);
-    color: black;
+    /*background-image: linear-gradient(to top, white  0%, #000099 100%);*/
+    background-color: rgba(100,100,100,0.4);
+    color: white;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 7px;
@@ -125,22 +141,22 @@ h1 {
                 <tr width= "100%">
                     <td width="25%" valign="top">
                         <div class="sidebar">
-                            <p><a href="profilepage.html">Profile Page</a></p>
-                            <p><a href="coursereg.html">Course Registration</a></p>
-                            <p><a class="b" href="timetable.html">Check Time Table</a></p>
-                            <p><a href="index.html">Sign Out</a></p>
+                            <p><a href="profilepage.php">Profile Page</a></p>
+                            <p><a href="coursereg.php">Course Registration</a></p>
+                            <p><a class="b" href="timetable.php">Check Time Table</a></p>
+                            <p><a href="logout.php"><?= $_SESSION['name'] ?> Sign Out</a></p>
                         </div>
                     </td>
                     <td width="75%">
                         <div class="profile">
                             <h2>STUDENT PROFILE</h2>
-                                <p>Registration Number: <span class="details">CSC/20**/***</span><br/></p>
-                                <p> Name: <span class="details">DAVID JOSHUA</span><br/></p>
-                                <p> Current Part: <span class="details">3</span><br/></p>
-                                <p> Degree Programme: <span class="details">B.Sc Computer Engineering</span><br/></p>
-                                <p> Department: <span class="details">Computer Science & Engineering</span><br/></p>
-                                <p> Faculty: <span class="details">Technology</span><br/></p>
-                                <p> BedSpace Location: <span class="details">*******</span><br/></p>
+                                <p>Registration Number: <span class="details"> <?= $_SESSION['matric_number'] ?>  </span><br/></p>
+                                <p> Name: <span class="details"><?= $_SESSION['name'] ?></span><br/></p>
+                                <p> Current Part: <span class="details"> <?= $_SESSION['current_part'] ?> </span><br/></p>
+                                <p> Degree Programme: <span class="details"><?= $_SESSION['course'] ?></span><br/></p>
+                                <p> Department: <span class="details"> <?= $_SESSION['department'] ?> </span><br/></p>
+                                <p> Faculty: <span class="details"><?= $_SESSION['faculty'] ?></span><br/></p>
+                                <p> BedSpace Location: <span class="details">nil </span><br/></p>
                         </div>
                     </td>
                 </tr>
@@ -152,3 +168,12 @@ h1 {
     COPYRIGHT&copy;2016/2017 GROUP 7 SWEP PROJECT
 </footer>  
 </html>
+
+<?php
+
+    }
+else
+{
+    die('');
+}
+?>

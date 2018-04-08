@@ -25,48 +25,9 @@ function insert($array,$connect,$tablename)
 	return $query;
 } 
 
-function fetch($tablename,$connect)
-{
-	$sql = "SELECT * FROM $tablename";
-	$query = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-
-	return $query;
-}
-
-function fetch_custom($tablename, $connect, $sql)
+function fetch_custom($connect, $sql)
 {
 	$query = mysqli_query($connect,$sql) or die(mysqli_error($connect));
-	return $query;
-}
-
-function fetch_order($tablename,$connect, $order)
-{
-	$sql = "SELECT * FROM $tablename
-			ORDER BY id $order ";
-	$query = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-
-	return $query;
-}
-
-function fetch_order_limit($tablename,$connect, $order,$limit)
-{
-	$sql = "SELECT * FROM $tablename
-			ORDER BY id $order
-			LIMIT $limit ";
-	
-	$query = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-
-	return $query;
-}
-
-function fetch_order_limit_where($tablename,$connect, $order,$wherevariable, $wherevalue)
-{
-	$sql = "SELECT * FROM $tablename	
-			WHERE $wherevariable = '$wherevalue'
-			ORDER BY id $order";
-	
-	$query = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-
 	return $query;
 }
 
@@ -85,7 +46,9 @@ function exists($email, $tablename)
 	}
 }
 
+// <a href="javascript: history.go(-1)">Go Back</a>
 
+$GLOBALS['connect'] = connect_db('swep_project');
 
 
 
