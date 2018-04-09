@@ -1,16 +1,17 @@
 <?php
-function post($var)
-{
-	if(isset($_POST[$var]))
-	{
-		return $_POST[$var];
-	}
-}
-
 function connect_db($database)
 {
 	$connect = mysqli_connect('localhost', 'root', '', $database) or die('unable to make databse connection');
 	return $connect;
+}
+
+function post($var)
+{
+    $connect = connect_db('swep_project');
+    if(isset($_POST[$var]))
+    {
+        return mysqli_real_escape_string($connect, $_POST[$var]);
+    }
 }
 
 function insert($array,$connect,$tablename)

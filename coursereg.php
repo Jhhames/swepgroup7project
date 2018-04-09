@@ -114,7 +114,7 @@ if (isset($_SESSION['name']) && isset($_SESSION['matric_number']))
 						&& part = '$part'
 				";
 
-				$mysqli = fetch_custom('courses', $connect, $sql);	
+				$mysqli = fetch_custom($connect, $sql);	
 
 				
 	$sql_for_regd = "SELECT * from $table_name";
@@ -271,9 +271,10 @@ else
 
 	<?php
 }
+
 }
 else
 {
-	die();
+	redirect_to('index.php');
 }
 ?>

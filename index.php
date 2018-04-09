@@ -4,14 +4,14 @@ include 'functions/sessions.php';
 
 $connect = connect_db('swep_project');
  
-function post($var)
-{
-    $connect = connect_db('swep_project');
-    if(isset($_POST[$var]))
-    {
-        return mysqli_real_escape_string($connect, $_POST[$var]);
-    }
-}
+// function post($var)
+// {
+//     $connect = connect_db('swep_project');
+//     if(isset($_POST[$var]))
+//     {
+//         return mysqli_real_escape_string($connect, $_POST[$var]);
+//     }
+// }
         if (post('login') != NULL)
         {
             $matric = post('matric');
@@ -21,7 +21,7 @@ function post($var)
 
             $sql = "SELECT * FROM `students` where matric_no = '$matric' && password = '$password' ";
 
-            $login_check = fetch_custom('students', $connect, $sql);
+            $login_check = fetch_custom($connect, $sql);
             
                 if (mysqli_num_rows($login_check) > 0 )
                 {
@@ -32,7 +32,7 @@ function post($var)
                         while ($row = mysqli_fetch_array($login_check)) {
                             $_SESSION['email'] = $row['email'];
                             $_SESSION['course'] = $row['course'];
-                            $_SESSION['department'] = $raow['department'];
+                            $_SESSION['department'] = $row['department'];
                             $_SESSION['faculty'] = $row['faculty'];
                             $_SESSION['current_part'] = $row['current_part'];
                             $_SESSION['name'] = $row['name'];
