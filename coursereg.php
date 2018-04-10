@@ -251,6 +251,10 @@ if (isset($_SESSION['name']) && isset($_SESSION['matric_number']))
 			
 		</table>
 
+
+ <a href="profilepage.php"><input type="submit" name="Close" value="Close" style="float:right;margin-right: 50px;background-color: skyblue;position: 
+        relative;" id="close"></a>
+
 	
 </div>
 </body>

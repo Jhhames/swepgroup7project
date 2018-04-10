@@ -174,6 +174,6 @@ h1 {
     }
 else
 {
-    die('');
+    redirect_to('index.php');
 }
 ?>
