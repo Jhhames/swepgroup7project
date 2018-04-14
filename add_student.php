@@ -43,7 +43,7 @@
 			'matric_no' => mysqli_real_escape_string($connect, post('matric')),
 			'department' => post('department'),
 			'faculty' => post('faculty'),
-			'course' => mysqli_real_escape_string($connect, post('course')),,
+			'course' => mysqli_real_escape_string($connect, post('course')),
 			'current_part' => post('part')
 			);
 
@@ -106,7 +106,7 @@
 
 
 		<strong>Matric number</strong>
-		<input type="text" name="matric">
+		<input type="text" name="matric" placeholder="Enter students matric no" required="yes">
 
 		<strong>Faculty</strong>
 		<select name="faculty">
@@ -136,10 +136,10 @@
 			<option value="4"> 4 </option>
 			<option value="5"> 5 </option>
 			<option value="6"> 6 </option>
-		</select>
+		</select> <p>
 
 		<strong>Course</strong>
-		<input type="text" name="course" placeholder="Emter Course student is studying" required>
+		<input type="text" name="course" placeholder="Enter Course student is studying" required>
 
 
 		<input type="submit" value="Add Student" name="add_student">

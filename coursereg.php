@@ -221,7 +221,7 @@ if (isset($_SESSION['name']) && isset($_SESSION['matric_number']))
 			</tr>
 
 <?php
-				if(isset($result_regd) && $result_regd != NULL )
+				if(isset($result_regd) && mysqli_num_rows($result_regd)>0 )
 				{
 					while ($row = mysqli_fetch_array($result_regd)) {
 				
